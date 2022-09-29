@@ -5,6 +5,22 @@ include "config.php";
 // if(!$_SESSION['level']){
 //     header('location:index.php');
 // }
+if (isset($_POST['login'])) {
+  $nip = $_POST['nip'];
+  $password = ($_POST['password']);
+  // $level = $_POST['level'];
+
+  $query = mysqli_query($config, "SELECT * FROM petugas WHERE nip = '$nip' AND password = '$password'");
+  $data = mysqli_fetch_array($query);
+
+     if ($data) {
+      $_SESSION['nip'] = $data['nip'];
+      // $_SESSION['level'] = $data['level'];
+      header('location: admin_home.php');
+     } else {
+      echo "<script> alert('USERNAME / PASSWORD SALAH, SILAHKAN COBA LAGI')</script>";
+      }
+    }
 ?>
 
 <!DOCTYPE html>
@@ -26,8 +42,8 @@ include "config.php";
       <h1 class="text-center mb-5">LOGIN ADMIN</h1>
       <form method="POST">
         <div class="mb-3">
-          <label for="exampleInputEmail1" class="form-label">Username</label>
-          <input type="text" class="form-control" aria-describedby="emailHelp" name="username">
+          <label for="exampleInputEmail1" class="form-label">NIP</label>
+          <input type="text" class="form-control" aria-describedby="emailHelp" name="nip">
         </div>
         <div class="mb-3">
           <label for="exampleInputPassword1" class="form-label">Password</label>

@@ -67,6 +67,7 @@ include "config.php";
                     <th>Cover</th>
                     <th>Sinopsis</th>
                     <th>Stock</th>
+                    <th colspan=2>Aksi</th>
                 </tr>
             </thead>
             <tbody>
@@ -85,8 +86,8 @@ include "config.php";
                     <td><img src="img/<?= $data['cover'] ?>" alt="" width="100px"  class="img img-thumbnail"></td>
                     <td><?= $data['sinopsis'] ?></td>
                     <td><?= $data['stock'] ?></td>
-                    <!-- <td><a href="edit.php?id=<?php echo $data['id'];?>"><button class="btn btn-primary">Edit</button></a></td>
-                    <td><a href="delete.php?id=<?php echo $data['id'];?>"><button class="btn btn-danger">Delete</button></a></td> -->
+                    <td><a href="edit.php?id=<?php echo $data['id_buku'];?>"><button class="btn btn-primary">Edit</button></a></td>
+                    <td><a href="delete.php?id=<?php echo $data['id_buku'];?>"><button class="btn btn-danger">Delete</button></a></td>
                 </tr>
             <?php
         }
