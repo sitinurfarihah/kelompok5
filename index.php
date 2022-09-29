@@ -1,3 +1,11 @@
+<?php
+session_start();
+include "config.php";
+
+// if(!$_SESSION['level']){
+//     header('location:index.php');
+// }
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -46,6 +54,49 @@
                 <img src="img/samurai cat.png" alt="" width="90%"  style="margin-top: -70px; margin-left: 50px;">
             </div>
         </div>
+      </div>
+
+      <!-- TABEL -->
+      
+      <div class="container">
+        <table class="table table-striped table-hover table-bordered">
+            <thead class="text-center">
+                <tr>
+                    <th>ID</th>
+                    <th>Penulis</th>
+                    <th>Tahun</th>
+                    <th>Judul</th>
+                    <th>Kota</th>
+                    <th>Penerbit Buku</th>
+                    <th>Cover</th>
+                    <th>Sinopsis</th>
+                    <th>Stock</th>
+                </tr>
+            </thead>
+            <tbody>
+            <?php
+                    
+                    $ambil = mysqli_query($config, "SELECT * FROM buku");
+                    while ($data = mysqli_fetch_array($ambil)) {
+                    ?>
+                <tr>
+                    <td><?= $data['id_buku'] ?></td>
+                    <td><?= $data['penulis'] ?></td>
+                    <td><?= $data['tahun'] ?></td>
+                    <td><?= $data['judul'] ?></td>
+                    <td><?= $data['kota'] ?></td>
+                    <td><?= $data['penerbit'] ?></td>
+                    <td><img src="img/<?= $data['cover'] ?>" alt="" width="100px"  class="img img-thumbnail"></td>
+                    <td><?= $data['sinopsis'] ?></td>
+                    <td><?= $data['stock'] ?></td>
+                    <!-- <td><a href="edit.php?id=<?php echo $data['id'];?>"><button class="btn btn-primary">Edit</button></a></td>
+                    <td><a href="delete.php?id=<?php echo $data['id'];?>"><button class="btn btn-danger">Delete</button></a></td> -->
+                </tr>
+            <?php
+        }
+        ?>
+            </tbody>
+        </table>
       </div>
 
 
