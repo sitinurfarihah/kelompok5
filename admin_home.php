@@ -6,6 +6,7 @@ include "config.php";
 //     header('location:index.php');
 // }
 ?>
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -28,13 +29,19 @@ include "config.php";
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link text-success" aria-current="page" href="#">Home</a>
+                <a class="nav-link text-success" aria-current="page" href="#">Buku</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Book</a>
+                <a class="nav-link" href="#">Siswa</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link bg-success text-white rounded-pill" href="login_admin.php">Login</a>
+                <a class="nav-link" href="#">Peminjaman</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pengembalian</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link bg-success text-white rounded-pill ms-4 ps-4 pe-4" href="#">LOGOUT</a>
               </li>
             </ul>
           </div>
@@ -43,18 +50,6 @@ include "config.php";
       
       <!-- isi 1 -->
 
-      <div class="container mt-5 pt-5">
-        <div class="row">
-            <div class="col-md-7">
-                <h1 class="wow fadeInUp">Selamat datang di</h1>
-                <h1 class="text-success wow fadeInUp">Perpustakaan 5 Jaya</h1>
-                <p class="wow fadeInUp">"Membaca adalah Pintu dunia, jika tidak mau membaca maka anda Player FF"</p>
-            </div>
-            <div class="col-md-5 wow fadeInRight">
-                <img src="img/samurai cat.png" alt="" width="90%"  style="margin-top: -70px; margin-left: 50px;">
-            </div>
-        </div>
-      </div>
 
       <!-- TABEL -->
       
