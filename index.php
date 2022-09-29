@@ -58,7 +58,8 @@ include "config.php";
 
       <!-- TABEL -->
       
-      <div class="container">
+      <div class="container mt-2 mb-5">
+        <h1 class="text-center mb-5">Daftar Buku</h1>
         <table class="table table-striped table-hover table-bordered">
             <thead class="text-center">
                 <tr>
