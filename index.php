@@ -20,16 +20,13 @@
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link text-warning" aria-current="page" href="#">Home</a>
+                <a class="nav-link text-success" aria-current="page" href="#">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="#">Book</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Services</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link bg-warning text-white rounded-pill" href="#">Contact</a>
+                <a class="nav-link bg-success text-white rounded-pill" href="#">Login</a>
               </li>
             </ul>
           </div>
@@ -41,16 +38,12 @@
       <div class="container mt-5 pt-5">
         <div class="row">
             <div class="col-md-7">
-                <h1 class="wow fadeInUp">Hi ! I am</h1>
-                <h1 class="text-warning wow fadeInUp">Adam Fawwaz</h1>
-                <p class="wow fadeInUp">Welcome to Adam Fawwaz We want our monthly roundup of new relases</p>
-                <div class="ps-5 mt-4">
-                    <button class="btn bg-warning rounded-pill text-white shadow ps-4 pe-4"> HIRE </button>
-                </div>
+                <h1 class="wow fadeInUp">Selamat datang di</h1>
+                <h1 class="text-success wow fadeInUp">Perpustakaan 5 Jaya</h1>
+                <p class="wow fadeInUp">"Membaca adalah Pintu dunia, jika tidak mau membaca maka anda Player FF"</p>
             </div>
             <div class="col-md-5 wow fadeInRight">
-                <img src="img/bg1.png" alt="">
-                <img src="img/samurai cat.png" alt="" width="90%"  style="margin-top: -350px; margin-left: 50px;">
+                <img src="img/samurai cat.png" alt="" width="90%"  style="margin-top: -70px; margin-left: 50px;">
             </div>
         </div>
       </div>
