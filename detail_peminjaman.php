@@ -54,33 +54,30 @@ if(!$_SESSION['nip']){
       <!-- TABEL -->
       
       <div class="container mt-2 mb-5">
-        <h1 class="text-center mb-5">Peminjaman Baru</h1>
+        <h1 class="text-center mb-5">Detail Peminjaman</h1>
         <a href="admin_peminjaman.php" class="btn btn-success mb-3"> Kembali</a>
         <form method="POST" enctype="multipart/form-data" >
             <div class="mb-3">
-                <label class="form-label">Siswa</label>
+                <label class="form-label">Buku</label>
                 <!-- <input type="number" class="form-control" name="siswa"> -->
-                <select class="form-select" aria-label="Default select example" name="nis" >
+                <select class="form-select" aria-label="Default select example" name="buku" >
                     <?php
-                    $ambil = mysqli_query($config,"SELECT * FROM siswa");
+                    $ambil = mysqli_query($config,"SELECT * FROM buku");
                     while ($data = mysqli_fetch_array($ambil)){
                     ?>
-                    <option value="<?= $data['nis'] ?>" ><?= $data['nama']; }?></option>
+                    <option value="<?= $data['id_buku'] ?>" ><?= $data['judul']; }?></option>
                 </select>
             </div>
             <div class="mb-3">
-                <label class="form-label">Petugas</label>
+                <label class="form-label">ID Peminjaman</label>
                 <input type="text" class="form-control" name="nip" value="<?= $_SESSION['nip']; ?>">
             </div>
             <div class="mb-3">
-                <label class="form-label">Tanggal Peminjaman</label>
+                <label class="form-label">Kuantitas</label>
                 <input type="date" class="form-control" name="tanggal_peminjaman">
             </div>
-            <div class="mb-3">
-                <label class="form-label">Tanggal Pengembalian</label>
-                <input type="date" class="form-control" name="tanggal_pengembalian">
-            </div>
-            <input type="submit" class="btn btn-primary" name="submit" value="Next"/>
+
+            <input type="submit" class="btn btn-primary" name="submit" value="Submit"/>
         </form>
       </div>
 
@@ -122,7 +119,7 @@ if (isset($_POST['submit'])) {
     $tanggal_pengembalian = $_POST['tanggal_pengembalian'];
 
 
-    $query = mysqli_query($config, "INSERT INTO peminjaman(id_siswa, id_petugas, tanggal_peminjaman, tanggal_pengembalian) VALUES('$nis', '$nip', '$tanggal_peminjaman', '$tanggal_pengembalian')");
+    $query = mysqli_query($config, "INSERT INTO peminjaman(nis, nip, tanggal_peminjaman, tanggal_pengembalian) VALUES('$nis', '$nip', '$tanggal_peminjaman', '$tanggal_pengembalian')");
 
     if ($query) {
       echo '<script>window.location.href="detail_peminjaman.php";</script>';

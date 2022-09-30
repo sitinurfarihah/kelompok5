@@ -15,6 +15,7 @@ if (isset($_POST['login'])) {
 
      if ($data) {
       $_SESSION['nip'] = $data['nip'];
+      $_SESSION['nama'] = $data['nama'];
       // $_SESSION['level'] = $data['level'];
       header('location: admin_home.php');
      } else {
