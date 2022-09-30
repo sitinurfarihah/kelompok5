@@ -30,13 +30,13 @@ if(!$_SESSION['nip']){
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link text-success" aria-current="page" href="admin_home.php">Buku</a>
+                <a class="nav-link" aria-current="page" href="admin_home.php">Buku</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Siswa</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="admin_peminjaman.php">Peminjaman</a>
+                <a class="nav-link text-success active" href="admin_peminjaman.php">Peminjaman</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Pengembalian</a>
@@ -54,41 +54,38 @@ if(!$_SESSION['nip']){
       <!-- TABEL -->
       
       <div class="container mt-2 mb-5">
-        <h1 class="text-center mb-5">Daftar Buku</h1>
-        <a href="create_buku.php" class="btn btn-success mb-3"> Tambah Buku</a>
+        <h1 class="text-center mb-5">Peminjaman</h1>
+        <a href="create_peminjaman.php" class="btn btn-success mb-3"> Pinjam Baru</a>
         <table class="table table-striped table-hover table-bordered">
             <thead class="text-center">
                 <tr>
-                    <th>ID</th>
-                    <th>Penulis</th>
-                    <th>Tahun</th>
-                    <th>Judul</th>
-                    <th>Kota</th>
-                    <th>Penerbit Buku</th>
-                    <th>Cover</th>
-                    <th>Sinopsis</th>
-                    <th>Stock</th>
-                    <th colspan=2>Aksi</th>
+                    <!-- <th>ID</th> -->
+                    <th>Nama Siswa</th>
+                    <th>Petugas</th>
+                    <th>Buku</th>
+                    <th>Tanggal Pinjam</th>
+                    <th>Tanggal Pengembalian</th>
+                    <!-- <th colspan=2>Aksi</th> -->
                 </tr>
             </thead>
             <tbody>
             <?php
                     
-                    $ambil = mysqli_query($config, "SELECT * FROM buku");
+                    $ambil = mysqli_query($config, "SELECT siswa.nama, petugas.nama, buku.judul, peminjaman.tanggal_peminjaman, peminjaman.tanggal_pengembalian from detail_peminjaman JOIN peminjaman on peminjaman.id_peminjaman = detail_peminjaman.id_peminjaman LEFT JOIN siswa on siswa.nis = peminjaman.id_siswa LEFT JOIN petugas on petugas.nip = peminjaman.id_petugas JOIN buku on buku.id_buku = detail_peminjaman.id_buku");
                     while ($data = mysqli_fetch_array($ambil)) {
                     ?>
                 <tr>
-                    <td><?= $data['id_buku'] ?></td>
-                    <td><?= $data['penulis'] ?></td>
-                    <td><?= $data['tahun'] ?></td>
+                    <!-- <td><?= $data['id_buku'] ?></td> -->
+                    <td><?= $data['nama'] ?></td>
+                    <td><?= $data['nama'] ?></td>
                     <td><?= $data['judul'] ?></td>
-                    <td><?= $data['kota'] ?></td>
-                    <td><?= $data['penerbit'] ?></td>
-                    <td><img src="img/<?= $data['cover'] ?>" alt="" width="100px"  class="img img-thumbnail"></td>
+                    <td><?= $data['tanggal_peminjaman'] ?></td>
+                    <td><?= $data['tanggal_pengembalian'] ?></td>
+                    <!-- <td><img src="img/<?= $data['cover'] ?>" alt="" width="100px"  class="img img-thumbnail"></td>
                     <td><?= $data['sinopsis'] ?></td>
                     <td><?= $data['stock'] ?></td>
                     <td><a href="update_buku.php?id_buku=<?php echo $data['id_buku'];?>"><button class="btn btn-primary">Edit</button></a></td>
-                    <td><a href="delete.php?id_buku=<?php echo $data['id_buku'];?>"><button class="btn btn-danger">Delete</button></a></td>
+                    <td><a href="delete.php?id_buku=<?php echo $data['id_buku'];?>"><button class="btn btn-danger">Delete</button></a></td> -->
                 </tr>
             <?php
         }
