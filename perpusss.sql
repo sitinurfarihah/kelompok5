@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2022 at 08:39 AM
+-- Generation Time: Sep 30, 2022 at 05:13 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -46,7 +46,8 @@ CREATE TABLE `buku` (
 INSERT INTO `buku` (`id_buku`, `penulis`, `tahun`, `judul`, `kota`, `penerbit`, `cover`, `sinopsis`, `stock`) VALUES
 (1, 'Prof. Dr. Sondang P.\r\nSiagan, MP.A', 2009, 'Administrasi Pembangunan', 'Jakarta', 'Bumi Aksara', 'administrasi pembangunan.jpg', 'Ini Buku administrasi pembangunan', 2),
 (2, 'Juwono Suroso', 2011, 'Asamurat', 'Jakarta', 'Penebar Plus', 'asamurat.jpg', 'Anda mempunyai masalah asamurat, baca buku ini.', 1),
-(3, 'Jhonatan Black', 2015, 'Sejarah Dunia yang Disembunyikan', 'Indonesia', 'Pustaka Alvabet', 'sejarah dunia.jpg', 'Banyak orang mengatakan bahwa sejarah ditulis oleh para pemenang. Hal ini sama sekali tak mengejutkan alias wajar belaka. Tetapi, bagaimana jika sejarah—atau apa yang kita ketahui sebagai sejarah—ditulis oleh orang yang salah? Bagaimana jika semua yang telah kita ketahui hanyalah bagian dari cerita yang salah tersebut?\r\n\r\nDalam buku kontroversial yang sangat tersohor ini, Jonathan Black mengupas secara tajam penelusurannya yang brilian tentang misteri sejarah dunia. Dari mitologi Yunani dan Mesir kuno sampai cerita rakyat Yahudi, dari kultus Kristiani sampai Freemason, dari Karel Agung sampai Don Quixote, dari George Washington sampai Hitler, dan dari pewahyuan Muhammad hingga legenda Seribu Satu Malam, Jonathan menunjukkan bahwa pengetahuan sejarah yang terlanjur mapan perlu dipikirkan kembali secara revolusioner. Dengan pengetahuan alternatif ihwal sejarah dunia selama lebih dari 3.000 tahun, dia mengungkap banyak rahasia besar yang selama ini disembunyikan.\r\n\r\nBuku ini akan membuat Anda mempertanyakan kembali segala sesuatu yang telah diajarkan kepada Anda. Dan, berbagai pengetahuan baru yang diungkapkan sang penulis benar-benar akan membuka dan mencerahkan wawasan Anda.', 1);
+(3, 'Jhonatan Black', 2015, 'Sejarah Dunia yang Disembunyikan', 'Indonesia', 'Pustaka Alvabet', 'sejarah dunia.jpg', 'Buku yang katanya dapat menggoyahkan iman yang membaca.', 1),
+(7, 'weqweqwd', 0000, 'efwefsdf', 'fgsreh', 'rehsdfbhre', 'samsudin.jpg', 'gfdfewfds', 5);
 
 -- --------------------------------------------------------
 
@@ -68,7 +69,8 @@ CREATE TABLE `detail_peminjaman` (
 INSERT INTO `detail_peminjaman` (`id_detail_peminjaman`, `id_buku`, `id_peminjaman`, `kuantitas`) VALUES
 (1, 1, 1, 1),
 (2, 2, 2, 1),
-(3, 3, 3, 1);
+(3, 3, 3, 1),
+(4, 3, 14, 1);
 
 -- --------------------------------------------------------
 
@@ -133,7 +135,18 @@ CREATE TABLE `peminjaman` (
 INSERT INTO `peminjaman` (`id_peminjaman`, `id_siswa`, `id_petugas`, `tanggal_peminjaman`, `tanggal_pengembalian`) VALUES
 (1, 1, 1, '2022-09-20', '2022-10-20'),
 (2, 2, 3, '2022-09-20', '2022-10-20'),
-(3, 3, 1, '2022-09-21', '2022-10-21');
+(3, 3, 1, '2022-09-21', '2022-10-21'),
+(4, 1, 1, '2022-08-31', '2022-10-26'),
+(5, 2, 1, '2022-09-23', '2022-09-30'),
+(6, 3, 1, '0000-00-00', '0000-00-00'),
+(7, 1, 1, '0000-00-00', '0000-00-00'),
+(8, 1, 1, '2022-09-09', '0000-00-00'),
+(9, 2, 1, '0000-00-00', '0000-00-00'),
+(10, 1, 1, '2022-09-08', '0000-00-00'),
+(11, 2, 1, '2022-09-09', '0000-00-00'),
+(12, 1, 1, '0000-00-00', '0000-00-00'),
+(13, 1, 1, '0000-00-00', '0000-00-00'),
+(14, 2, 1, '2022-09-01', '2022-09-01');
 
 -- --------------------------------------------------------
 
@@ -165,7 +178,7 @@ INSERT INTO `pengembalian` (`id_pengembalian`, `id_peminjaman`, `tanggal_pengemb
 
 CREATE TABLE `petugas` (
   `nip` int(11) NOT NULL,
-  `nama` varchar(255) NOT NULL,
+  `nama_petugas` varchar(255) NOT NULL,
   `jenis_kelamin` enum('L','P') NOT NULL,
   `alamat` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL
@@ -175,7 +188,7 @@ CREATE TABLE `petugas` (
 -- Dumping data for table `petugas`
 --
 
-INSERT INTO `petugas` (`nip`, `nama`, `jenis_kelamin`, `alamat`, `password`) VALUES
+INSERT INTO `petugas` (`nip`, `nama_petugas`, `jenis_kelamin`, `alamat`, `password`) VALUES
 (1, 'Simon', 'L', 'Surabaya, Jawa Timur', 'simon'),
 (2, 'Ferguso', 'L', 'California, USA', 'ferguso'),
 (3, 'Retno', 'P', 'Ponorogo, Jawa Timur', 'retno');
@@ -270,13 +283,13 @@ ALTER TABLE `siswa`
 -- AUTO_INCREMENT for table `buku`
 --
 ALTER TABLE `buku`
-  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_buku` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `detail_peminjaman`
 --
 ALTER TABLE `detail_peminjaman`
-  MODIFY `id_detail_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_detail_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `detail_pengembalian`
@@ -294,7 +307,7 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `pengembalian`
