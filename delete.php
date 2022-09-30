@@ -1,6 +1,11 @@
 <?php
 include 'config.php';
 $id = $_GET['id_buku'];
-mysqli_query($kon, "DELETE FROM perpuss WHERE id_buku = '$id'");
-header("location: admin_home.php");
+mysqli_query($config, "DELETE FROM perpuss WHERE id_buku = '$id'");
+
+if ($query) {
+    echo 'data berhasil dihapus <a href="admin_home.php">kembali<a>';
+}else {
+    echo 'data gagal dihapus';
+}
 ?>

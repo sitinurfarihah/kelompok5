@@ -20,6 +20,7 @@ include "config.php";
     <link rel="stylesheet" type="text/css" href="WOW-master/css/libs/animate.css"/>
   </head>
   <body>
+    <!-- Navbar -->
       <nav class="navbar navbar-expand-lg bg-secondary bg-opacity-10 py-2">
         <div class="container">
           <a class="navbar-brand" href="#"><i class="fa fa-coffee"></i>Perpustakaan 5 Jaya</a>
@@ -48,13 +49,13 @@ include "config.php";
         </div>
       </nav>
       
-      <!-- isi 1 -->
 
 
       <!-- TABEL -->
       
       <div class="container mt-2 mb-5">
         <h1 class="text-center mb-5">Daftar Buku</h1>
+        <a href="create_buku.php" class="btn btn-success mb-3"> Tambah Buku</a>
         <table class="table table-striped table-hover table-bordered">
             <thead class="text-center">
                 <tr>
@@ -86,8 +87,8 @@ include "config.php";
                     <td><img src="img/<?= $data['cover'] ?>" alt="" width="100px"  class="img img-thumbnail"></td>
                     <td><?= $data['sinopsis'] ?></td>
                     <td><?= $data['stock'] ?></td>
-                    <td><a href="edit.php?id=<?php echo $data['id_buku'];?>"><button class="btn btn-primary">Edit</button></a></td>
-                    <td><a href="delete.php?id=<?php echo $data['id_buku'];?>"><button class="btn btn-danger">Delete</button></a></td>
+                    <td><a href="edit.php?id_buku=<?php echo $data['id_buku'];?>"><button class="btn btn-primary">Edit</button></a></td>
+                    <td><a href="delete.php?id_buku=<?php echo $data['id_buku'];?>"><button class="btn btn-danger">Delete</button></a></td>
                 </tr>
             <?php
         }
