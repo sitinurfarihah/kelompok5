@@ -2,9 +2,9 @@
 session_start();
 include "config.php";
 
-// if(!$_SESSION['level']){
-//     header('location:index.php');
-// }
+if(!$_SESSION['nip']){
+    header('location:index.php');
+}
 ?>
 
 <!doctype html>
@@ -42,7 +42,7 @@ include "config.php";
                 <a class="nav-link" href="#">Pengembalian</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link bg-success text-white rounded-pill ms-4 ps-4 pe-4" href="#">LOGOUT</a>
+                <a class="nav-link bg-success text-white rounded-pill ms-4 ps-4 pe-4" href="logout.php">LOGOUT</a>
               </li>
             </ul>
           </div>

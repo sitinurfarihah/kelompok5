@@ -2,9 +2,9 @@
 session_start();
 include "config.php";
 
-// if(!$_SESSION['level']){
-//     header('location:index.php');
-// }
+if(!$_SESSION['nip']){
+    header('location:index.php');
+}
 ?>
 
 <!doctype html>

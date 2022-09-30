@@ -2,7 +2,7 @@
 session_start();
 include "config.php";
 
-// if(!$_SESSION['level']){
+// if(!$_SESSION['nip']){
 //     header('location:index.php');
 // }
 if (isset($_POST['login'])) {
