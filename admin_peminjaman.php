@@ -71,21 +71,15 @@ if(!$_SESSION['nip']){
             <tbody>
             <?php
                     
-                    $ambil = mysqli_query($config, "SELECT siswa.nama, petugas.nama, buku.judul, peminjaman.tanggal_peminjaman, peminjaman.tanggal_pengembalian from detail_peminjaman JOIN peminjaman on peminjaman.id_peminjaman = detail_peminjaman.id_peminjaman LEFT JOIN siswa on siswa.nis = peminjaman.id_siswa LEFT JOIN petugas on petugas.nip = peminjaman.id_petugas JOIN buku on buku.id_buku = detail_peminjaman.id_buku");
+                    $ambil = mysqli_query($config, "SELECT s.nama, p.nama_petugas, buku.judul, peminjaman.tanggal_peminjaman, peminjaman.tanggal_pengembalian from detail_peminjaman JOIN peminjaman on peminjaman.id_peminjaman = detail_peminjaman.id_peminjaman LEFT JOIN siswa s on s.nis = peminjaman.id_siswa LEFT JOIN petugas p on p.nip = peminjaman.id_petugas JOIN buku on buku.id_buku = detail_peminjaman.id_buku");
                     while ($data = mysqli_fetch_array($ambil)) {
                     ?>
                 <tr>
-                    <!-- <td><?= $data['id_buku'] ?></td> -->
                     <td><?= $data['nama'] ?></td>
-                    <td><?= $data['nama'] ?></td>
+                    <td><?= $data['nama_petugas'] ?></td>
                     <td><?= $data['judul'] ?></td>
                     <td><?= $data['tanggal_peminjaman'] ?></td>
-                    <td><?= $data['tanggal_pengembalian'] ?></td>
-                    <!-- <td><img src="img/<?= $data['cover'] ?>" alt="" width="100px"  class="img img-thumbnail"></td>
-                    <td><?= $data['sinopsis'] ?></td>
-                    <td><?= $data['stock'] ?></td>
-                    <td><a href="update_buku.php?id_buku=<?php echo $data['id_buku'];?>"><button class="btn btn-primary">Edit</button></a></td>
-                    <td><a href="delete.php?id_buku=<?php echo $data['id_buku'];?>"><button class="btn btn-danger">Delete</button></a></td> -->
+                    <td><?= $data['tanggal_pengembalian'] ?></td>                
                 </tr>
             <?php
         }

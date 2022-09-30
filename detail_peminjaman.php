@@ -30,13 +30,13 @@ if(!$_SESSION['nip']){
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link text-success" aria-current="page" href="#">Buku</a>
+                <a class="nav-link" aria-current="page" href="admin_home.php">Buku</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Siswa</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Peminjaman</a>
+                <a class="nav-link text-success" href="admin_peminjaman.php">Peminjaman</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Pengembalian</a>
@@ -62,6 +62,8 @@ if(!$_SESSION['nip']){
                 <!-- <input type="number" class="form-control" name="siswa"> -->
                 <select class="form-select" aria-label="Default select example" name="buku" >
                     <?php
+                    $id_peminjaman = $_GET['id_peminjaman'];
+
                     $ambil = mysqli_query($config,"SELECT * FROM buku");
                     while ($data = mysqli_fetch_array($ambil)){
                     ?>
@@ -70,11 +72,11 @@ if(!$_SESSION['nip']){
             </div>
             <div class="mb-3">
                 <label class="form-label">ID Peminjaman</label>
-                <input type="text" class="form-control" name="nip" value="<?= $_SESSION['nip']; ?>">
+                <input type="text" class="form-control" name="id_peminjaman" value="<?= $_GET['id_peminjaman'] ?>" readonly>
             </div>
             <div class="mb-3">
                 <label class="form-label">Kuantitas</label>
-                <input type="date" class="form-control" name="tanggal_peminjaman">
+                <input type="number" class="form-control" name="kuantitas">
             </div>
 
             <input type="submit" class="btn btn-primary" name="submit" value="Submit"/>
@@ -113,16 +115,16 @@ if(!$_SESSION['nip']){
 
 <?php
 if (isset($_POST['submit'])) {
-    $nis = $_POST['nis'];
-    $nip = $_POST['nip'];
-    $tanggal_peminjaman = $_POST['tanggal_peminjaman'];
-    $tanggal_pengembalian = $_POST['tanggal_pengembalian'];
+    $buku = $_POST['buku'];
+    $id_peminjaman = $_POST['id_peminjaman'];
+    $kuantitas = $_POST['kuantitas'];
 
 
-    $query = mysqli_query($config, "INSERT INTO peminjaman(nis, nip, tanggal_peminjaman, tanggal_pengembalian) VALUES('$nis', '$nip', '$tanggal_peminjaman', '$tanggal_pengembalian')");
+    $query = mysqli_query($config, "INSERT INTO detail_peminjaman(id_buku, id_peminjaman, kuantitas) VALUES('$buku', '$id_peminjaman', '$kuantitas')");
 
-    if ($query) {
-      echo '<script>window.location.href="detail_peminjaman.php";</script>';
+    if ($query) { 
+
+      echo '<script>window.location.href="admin_peminjaman.php";</script>';
     } else {
         echo 'data gagal ditambah';
     }

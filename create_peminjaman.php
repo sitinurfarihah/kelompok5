@@ -30,13 +30,13 @@ if(!$_SESSION['nip']){
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link text-success" aria-current="page" href="#">Buku</a>
+                <a class="nav-link" aria-current="page" href="#">Buku</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Siswa</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Peminjaman</a>
+                <a class="nav-link text-success" href="admin_peminjaman.php">Peminjaman</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="#">Pengembalian</a>
@@ -70,7 +70,7 @@ if(!$_SESSION['nip']){
             </div>
             <div class="mb-3">
                 <label class="form-label">Petugas</label>
-                <input type="text" class="form-control" name="nip" value="<?= $_SESSION['nip']; ?>">
+                <input type="text" class="form-control" name="nip" value="<?= $_SESSION['nip']; ?>" readonly>
             </div>
             <div class="mb-3">
                 <label class="form-label">Tanggal Peminjaman</label>
@@ -125,7 +125,10 @@ if (isset($_POST['submit'])) {
     $query = mysqli_query($config, "INSERT INTO peminjaman(id_siswa, id_petugas, tanggal_peminjaman, tanggal_pengembalian) VALUES('$nis', '$nip', '$tanggal_peminjaman', '$tanggal_pengembalian')");
 
     if ($query) {
-      echo '<script>window.location.href="detail_peminjaman.php";</script>';
+        $maxid = mysqli_query($config,"SELECT MAX(id_peminjaman)as id_p FROM peminjaman");
+        $max = mysqli_fetch_array($maxid);
+
+      echo '<script>window.location.href="detail_peminjaman.php?id_peminjaman='.$max['id_p'].'";</script>';
     } else {
         echo 'data gagal ditambah';
     }
