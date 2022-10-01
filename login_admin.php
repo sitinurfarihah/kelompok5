@@ -58,7 +58,6 @@ if (isset($_POST['login'])) {
         <button type="submit" class="btn btn-primary" name="login">Login</button>
         </div>
       </form>
-      <a href="admin_home.php">masuk admin sementara</a>
   </div>
 </div>
 

@@ -36,10 +36,10 @@ if(!$_SESSION['nip']){
                 <a class="nav-link" href="#">Siswa</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-success active" href="admin_peminjaman.php">Peminjaman</a>
+                <a class="nav-link" href="admin_peminjaman.php">Peminjaman</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="admin_pengembalian.php">Pengembalian</a>
+                <a class="nav-link text-success active" href="admin_pengembalian.php">Pengembalian</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link bg-success text-white rounded-pill ms-4 ps-4 pe-4" href="logout.php">LOGOUT</a>
@@ -54,7 +54,7 @@ if(!$_SESSION['nip']){
       <!-- TABEL -->
       
       <div class="container mt-2 mb-5">
-        <h1 class="text-center mb-5">Peminjaman</h1>
+        <h1 class="text-center mb-5">Pengembalian</h1>
         <a href="create_peminjaman.php" class="btn btn-success mb-3"> Pinjam Baru</a>
         <table class="table table-striped table-hover table-bordered">
             <thead class="text-center">

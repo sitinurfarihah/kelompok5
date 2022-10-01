@@ -39,7 +39,7 @@ if(!$_SESSION['nip']){
                 <a class="nav-link" href="admin_peminjaman.php">Peminjaman</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Pengembalian</a>
+                <a class="nav-link" href="admin_pengembalian.php">Pengembalian</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link bg-success text-white rounded-pill ms-4 ps-4 pe-4" href="logout.php">LOGOUT</a>
