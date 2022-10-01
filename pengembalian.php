@@ -51,44 +51,35 @@ if(!$_SESSION['nip']){
       
 
 
-      <!-- TABEL -->
+      <!-- FORM -->
       
       <div class="container mt-2 mb-5">
         <h1 class="text-center mb-5">Pengembalian</h1>
-        <a href="create_peminjaman.php" class="btn btn-success mb-3"> Pinjam Baru</a>
-        <table class="table table-striped table-hover table-bordered">
-            <thead class="text-center">
-                <tr>
-                    <th>ID Pengembalian</th>
-                    <th>ID Peminjaman</th>
-                    <th>Nama Siswa</th>
-                    <th>Tanggal Pinjam</th>
-                    <th>Tanggal Pengembalian</th>
-                    <th>Tanggal Kembali</th>
-                    <th>Denda</th>
-                    <!-- <th colspan=2>Aksi</th> -->
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-                    
-                    $ambil = mysqli_query($config, "SELECT pengembalian.id_pengembalian, pengembalian.id_peminjaman, siswa.nama, peminjaman.tanggal_peminjaman, peminjaman.tanggal_pengembalian, pengembalian.tanggal_kembali, pengembalian.denda FROM pengembalian JOIN peminjaman ON peminjaman.id_peminjaman = pengembalian.id_peminjaman LEFT JOIN siswa on siswa.nis = peminjaman.id_siswa");
-                    while ($data = mysqli_fetch_array($ambil)) {
-                    ?>
-                <tr>
-                    <td><?= $data['id_pengembalian'] ?></td>
-                    <td><?= $data['id_peminjaman'] ?></td>
-                    <td><?= $data['nama'] ?></td>
-                    <td><?= $data['tanggal_peminjaman'] ?></td>
-                    <td><?= $data['tanggal_pengembalian'] ?></td>
-                    <td><?= $data['tanggal_kembali'] ?></td>
-                    <td><?= $data['denda'] ?></td>                
-                </tr>
-            <?php
-        }
-        ?>
-            </tbody>
-        </table>
+        <!-- <a href="create_peminjaman.php" class="btn btn-success mb-3"> Pinjam Baru</a> -->
+        <form method="POST" enctype="multipart/form-data" >
+        <?php
+                $id_peminjaman = $_GET['id_peminjaman'];
+
+                $ambil = mysqli_query($config,"SELECT * FROM peminjaman WHERE id_peminjaman = $id_peminjaman");
+                while ($data = mysqli_fetch_array($ambil)){
+
+            ?>
+            <div class="mb-3">
+                <label class="form-label">ID Pengembalian</label>
+                <input type="text" class="form-control" name="id_peminjaman" value="<?= $_GET['id_peminjaman'] ?>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Tanggal Kembali</label>
+                <input type="date" class="form-control" name="tanggal_kembali">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Denda</label>
+                <input type="number" class="form-control" name="denda" value="">
+            </div>
+            <?php } ?>
+            <input type="submit" class="btn btn-primary" name="submit" value="Submit"/>
+        </form>
+        
       </div>
 
 
@@ -120,3 +111,26 @@ if(!$_SESSION['nip']){
   </script>
   </body>
 </html>
+
+<?php
+if (isset($_POST['submit'])) {
+    $id_peminjaman = $_POST['id_peminjaman'];
+    $tanggal_kembali = $_POST['tanggal_kembali'];
+    $denda = $_POST['denda'];
+
+
+    $query = mysqli_query($config, "INSERT INTO pengembalian(id_peminjaman, tanggal_kembali, denda) VALUES('$id_peminjaman', '$tanggal_kembali', '$denda')");
+
+    if ($query) {
+        $maxid = mysqli_query($config,"SELECT MAX(id_pengembalian)as id_peng FROM pengembalian");
+        $max = mysqli_fetch_array($maxid);
+
+      echo '<script>window.location.href="detail_pengembalian.php?id_pengembalian='.$max['id_peng'].'";</script>';
+    } else {
+        echo 'data gagal ditambah';
+    }
+    
+} 
+
+
+?>

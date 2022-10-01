@@ -36,13 +36,13 @@ if(!$_SESSION['nip']){
                 <a class="nav-link" href="#">Siswa</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="admin_peminjaman.php">Peminjaman</a>
+                <a class="nav-link text-success" href="admin_peminjaman.php">Peminjaman</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-success active" href="admin_pengembalian.php">Pengembalian</a>
+                <a class="nav-link" href="#">Pengembalian</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link bg-success text-white rounded-pill ms-4 ps-4 pe-4" href="logout.php">LOGOUT</a>
+                <a class="nav-link bg-success text-white rounded-pill ms-4 ps-4 pe-4" href="#">LOGOUT</a>
               </li>
             </ul>
           </div>
@@ -54,41 +54,23 @@ if(!$_SESSION['nip']){
       <!-- TABEL -->
       
       <div class="container mt-2 mb-5">
-        <h1 class="text-center mb-5">Pengembalian</h1>
-        <a href="create_peminjaman.php" class="btn btn-success mb-3"> Pinjam Baru</a>
-        <table class="table table-striped table-hover table-bordered">
-            <thead class="text-center">
-                <tr>
-                    <th>ID Pengembalian</th>
-                    <th>ID Peminjaman</th>
-                    <th>Nama Siswa</th>
-                    <th>Tanggal Pinjam</th>
-                    <th>Tanggal Pengembalian</th>
-                    <th>Tanggal Kembali</th>
-                    <th>Denda</th>
-                    <!-- <th colspan=2>Aksi</th> -->
-                </tr>
-            </thead>
-            <tbody>
-            <?php
-                    
-                    $ambil = mysqli_query($config, "SELECT pengembalian.id_pengembalian, pengembalian.id_peminjaman, siswa.nama, peminjaman.tanggal_peminjaman, peminjaman.tanggal_pengembalian, pengembalian.tanggal_kembali, pengembalian.denda FROM pengembalian JOIN peminjaman ON peminjaman.id_peminjaman = pengembalian.id_peminjaman LEFT JOIN siswa on siswa.nis = peminjaman.id_siswa");
-                    while ($data = mysqli_fetch_array($ambil)) {
-                    ?>
-                <tr>
-                    <td><?= $data['id_pengembalian'] ?></td>
-                    <td><?= $data['id_peminjaman'] ?></td>
-                    <td><?= $data['nama'] ?></td>
-                    <td><?= $data['tanggal_peminjaman'] ?></td>
-                    <td><?= $data['tanggal_pengembalian'] ?></td>
-                    <td><?= $data['tanggal_kembali'] ?></td>
-                    <td><?= $data['denda'] ?></td>                
-                </tr>
-            <?php
-        }
-        ?>
-            </tbody>
-        </table>
+        <h1 class="text-center mb-5">Detail Pengembalian</h1>
+        <!-- <a href="admin_peminjaman.php" class="btn btn-success mb-3"> Kembali</a> -->
+        <form method="POST" enctype="multipart/form-data" >
+            <div class="mb-3">
+                <label class="form-label">ID Pengembalian</label>
+                <input type="text" class="form-control" name="id_peminjaman" value="<?= $_GET['id_pengembalian'] ?>" readonly>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Ada</label>
+                <input type="number" class="form-control" name="ada">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Hilang</label>
+                <input type="number" class="form-control" name="hilang">
+            </div>
+            <input type="submit" class="btn btn-primary" name="submit" value="Submit"/>
+        </form>
       </div>
 
 
@@ -120,3 +102,24 @@ if(!$_SESSION['nip']){
   </script>
   </body>
 </html>
+
+<?php
+if (isset($_POST['submit'])) {
+    $buku = $_POST['buku'];
+    $id_peminjaman = $_POST['id_peminjaman'];
+    $kuantitas = $_POST['kuantitas'];
+
+
+    $query = mysqli_query($config, "INSERT INTO detail_peminjaman(id_buku, id_peminjaman, kuantitas) VALUES('$buku', '$id_peminjaman', '$kuantitas')");
+
+    if ($query) { 
+
+      echo '<script>window.location.href="admin_pengembalian.php";</script>';
+    } else {
+        echo 'data gagal ditambah';
+    }
+    
+} 
+
+
+?>

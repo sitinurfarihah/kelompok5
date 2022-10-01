@@ -59,27 +59,30 @@ if(!$_SESSION['nip']){
         <table class="table table-striped table-hover table-bordered">
             <thead class="text-center">
                 <tr>
-                    <!-- <th>ID</th> -->
+                    <th>ID Peminjaman</th>
                     <th>Nama Siswa</th>
                     <th>Petugas</th>
                     <th>Buku</th>
                     <th>Tanggal Pinjam</th>
                     <th>Tanggal Pengembalian</th>
-                    <!-- <th colspan=2>Aksi</th> -->
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
             <?php
                     
-                    $ambil = mysqli_query($config, "SELECT s.nama, p.nama_petugas, buku.judul, peminjaman.tanggal_peminjaman, peminjaman.tanggal_pengembalian from detail_peminjaman JOIN peminjaman on peminjaman.id_peminjaman = detail_peminjaman.id_peminjaman LEFT JOIN siswa s on s.nis = peminjaman.id_siswa LEFT JOIN petugas p on p.nip = peminjaman.id_petugas JOIN buku on buku.id_buku = detail_peminjaman.id_buku");
+                    $ambil = mysqli_query($config, "SELECT peminjaman.id_peminjaman, s.nama, p.nama_petugas, buku.judul, peminjaman.tanggal_peminjaman, peminjaman.tanggal_pengembalian from detail_peminjaman JOIN peminjaman on peminjaman.id_peminjaman = detail_peminjaman.id_peminjaman LEFT JOIN siswa s on s.nis = peminjaman.id_siswa LEFT JOIN petugas p on p.nip = peminjaman.id_petugas JOIN buku on buku.id_buku = detail_peminjaman.id_buku");
                     while ($data = mysqli_fetch_array($ambil)) {
                     ?>
                 <tr>
+                    <td><?= $data['id_peminjaman'] ?></td>
                     <td><?= $data['nama'] ?></td>
                     <td><?= $data['nama_petugas'] ?></td>
                     <td><?= $data['judul'] ?></td>
                     <td><?= $data['tanggal_peminjaman'] ?></td>
-                    <td><?= $data['tanggal_pengembalian'] ?></td>                
+                    <td><?= $data['tanggal_pengembalian'] ?></td>
+                    <td><a href="pengembalian.php?id_peminjaman=<?php echo $data['id_peminjaman'];?>"><button class="btn btn-danger">Dikembalikan</button></a></td>
+
                 </tr>
             <?php
         }
