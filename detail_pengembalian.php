@@ -59,7 +59,7 @@ if(!$_SESSION['nip']){
         <form method="POST" enctype="multipart/form-data" >
             <div class="mb-3">
                 <label class="form-label">ID Pengembalian</label>
-                <input type="text" class="form-control" name="id_peminjaman" value="<?= $_GET['id_pengembalian'] ?>" readonly>
+                <input type="text" class="form-control" name="id_pengembalian" value="<?= $_GET['id_pengembalian'] ?>" readonly>
             </div>
             <div class="mb-3">
                 <label class="form-label">Ada</label>
@@ -105,12 +105,12 @@ if(!$_SESSION['nip']){
 
 <?php
 if (isset($_POST['submit'])) {
-    $buku = $_POST['buku'];
-    $id_peminjaman = $_POST['id_peminjaman'];
-    $kuantitas = $_POST['kuantitas'];
+    $id_pengembalian = $_POST['id_pengembalian'];
+    $ada = $_POST['ada'];
+    $hilang = $_POST['hilang'];
 
 
-    $query = mysqli_query($config, "INSERT INTO detail_peminjaman(id_buku, id_peminjaman, kuantitas) VALUES('$buku', '$id_peminjaman', '$kuantitas')");
+    $query = mysqli_query($config, "INSERT INTO detail_pengembalian(id_pengembalian, ada, hilang) VALUES('$id_pengembalian', '$ada', '$hilang')");
 
     if ($query) { 
 

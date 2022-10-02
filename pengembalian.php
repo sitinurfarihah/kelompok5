@@ -62,7 +62,7 @@ if(!$_SESSION['nip']){
 
                 $ambil = mysqli_query($config,"SELECT * FROM peminjaman WHERE id_peminjaman = $id_peminjaman");
                 while ($data = mysqli_fetch_array($ambil)){
-
+                   $data['tanggal_pengembalian'];
             ?>
             <div class="mb-3">
                 <label class="form-label">ID Pengembalian</label>
@@ -116,7 +116,11 @@ if(!$_SESSION['nip']){
 if (isset($_POST['submit'])) {
     $id_peminjaman = $_POST['id_peminjaman'];
     $tanggal_kembali = $_POST['tanggal_kembali'];
-    $denda = $_POST['denda'];
+    // $denda = $_POST['denda'];
+    $selisih = date_diff($data['tanggal_pengembalian'] - $tanggal_kembali);
+    if ($selisih > 0) {
+      $denda = $selisih * 1;
+    }
 
 
     $query = mysqli_query($config, "INSERT INTO pengembalian(id_peminjaman, tanggal_kembali, denda) VALUES('$id_peminjaman', '$tanggal_kembali', '$denda')");
