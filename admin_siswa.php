@@ -28,10 +28,10 @@ include "config.php";
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link text-success" aria-current="page" href="#">Home</a>
+                <a class="nav-link text-success" aria-current="page" href="index.php">Home</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Book</a>
+                <a class="nav-link" href="index.php">Book</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link bg-success text-white rounded-pill" href="login_siswa.php">Login</a>
@@ -45,6 +45,7 @@ include "config.php";
       
       <div class="container mt-5 mb-5">
         <h1 class="text-center mb-5">Daftar Siswa</h1>
+        <a href="create_siswa.php" class="btn btn-success mb-3">Tambah Siswa</a>
         <table class="table table-striped table-hover table-bordered text-center">
             <thead class="text-center">
                 <tr>
