@@ -55,19 +55,18 @@ include "config.php";
       
       <div class="container mt-2 mb-5">
         <h1 class="text-center mb-5">Tambah Siswa</h1>
-        <a href="admin_home.php" class="btn btn-success mb-3"> Kembali</a>
+        <a href="admin_siswa.php" class="btn btn-success mb-3"> Kembali</a>
         <form method="POST" enctype="multipart/form-data" >
-            <div class="mb-3">
-                <label class="form-label">NIS</label>
-                <input type="number" class="form-control" name="nis">
-            </div>
             <div class="mb-3">
                 <label class="form-label">Nama</label>
                 <input type="text" class="form-control" name="nama">
             </div>
             <div class="mb-3">
                 <label class="form-label">Jenis Kelamin</label>
-                <input type="text" class="form-control" name="jenis_kelamin">
+                <select name="jenis_kelamin" class="form-control" id="">
+                  <option value="L">Laki-Laki</option>
+                  <option value="P">Perempuan</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Alamat</label>
@@ -75,7 +74,13 @@ include "config.php";
             </div>
             <div class="mb-3">
                 <label class="form-label">Kelas</label>
-                <input type="text" class="form-control" name="kelas">
+                <select class="form-select" aria-label="Default select example" name="kelas" >
+                    <?php
+                    $ambil = mysqli_query($config,"SELECT * FROM kelas");
+                    while ($datakelas = mysqli_fetch_array($ambil)){
+                    ?>
+                    <option value="<?= $datakelas['id_kelas'] ?>" ><?= $datakelas['nama_kelas']; }?></option>
+                </select>
             </div>
             <input type="submit" class="btn btn-primary" name="submit" value="Tambah Siswa"/>
         </form>
@@ -119,10 +124,10 @@ if (isset($_POST['submit'])) {
     $alamat = $_POST['alamat'];
     $kelas = $_POST['kelas'];
 
-    $query = mysqli_query($config, "INSERT INTO siswa(nis, nama, jenis_kelamin, alamat, kelas) VALUES('$nis', '$nama', '$jenis_kelamin', '$alamat', '$kelas')");
+    $query = mysqli_query($config, "INSERT INTO siswa(nis, nama, jenis_kelamin, alamat, id_kelas) VALUES('$nis', '$nama', '$jenis_kelamin', '$alamat', '$kelas')");
 
     if ($query) {
-      echo '<script>window.location.href="admin_home.php";</script>';
+      echo '<script>window.location.href="admin_siswa.php";</script>';
     } else {
         echo 'data gagal ditambah';
     }

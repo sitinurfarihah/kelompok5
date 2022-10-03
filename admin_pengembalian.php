@@ -72,12 +72,12 @@ if(!$_SESSION['nip']){
             <tbody>
             <?php
                     
-                    $ambil = mysqli_query($config, "SELECT pengembalian.id_pengembalian, pengembalian.id_peminjaman, siswa.nama, peminjaman.tanggal_peminjaman, peminjaman.tanggal_pengembalian, pengembalian.tanggal_kembali, pengembalian.denda FROM pengembalian JOIN peminjaman ON peminjaman.id_peminjaman = pengembalian.id_peminjaman LEFT JOIN siswa on siswa.nis = peminjaman.id_siswa");
+                    $ambil = mysqli_query($config, "SELECT pengembalian.id_pengembalian, pengembalian.id_peminjaman2, siswa.nama, peminjaman.tanggal_peminjaman, peminjaman.tanggal_pengembalian, pengembalian.tanggal_kembali, pengembalian.denda FROM pengembalian JOIN peminjaman ON peminjaman.id_peminjaman = pengembalian.id_peminjaman2 LEFT JOIN siswa on siswa.nis = peminjaman.id_siswa");
                     while ($data = mysqli_fetch_array($ambil)) {
                     ?>
                 <tr>
                     <td><?= $data['id_pengembalian'] ?></td>
-                    <td><?= $data['id_peminjaman'] ?></td>
+                    <td><?= $data['id_peminjaman2'] ?></td>
                     <td><?= $data['nama'] ?></td>
                     <td><?= $data['tanggal_peminjaman'] ?></td>
                     <td><?= $data['tanggal_pengembalian'] ?></td>

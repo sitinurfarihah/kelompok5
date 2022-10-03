@@ -120,7 +120,7 @@ if (isset($_POST['submit'])) {
     $kuantitas = $_POST['kuantitas'];
 
 
-    $query = mysqli_query($config, "INSERT INTO detail_peminjaman(id_buku, id_peminjaman, kuantitas) VALUES('$buku', '$id_peminjaman', '$kuantitas')");
+    $query = mysqli_query($config, "INSERT INTO detail_peminjaman(id_buku, id_peminjaman3, kuantitas) VALUES('$buku', '$id_peminjaman', '$kuantitas')");
 
     if ($query) { 
 

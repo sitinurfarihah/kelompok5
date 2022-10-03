@@ -65,20 +65,16 @@ if(!$_SESSION['nip']){
                   //  $data['tanggal_pengembalian'];
             ?>
             <div class="mb-3">
-                <label class="form-label">ID Pengembalian</label>
-                <input type="text" class="form-control" name="id_peminjaman" value="<?= $_GET['id_peminjaman'] ?>">
+                <label class="form-label">ID Peminjaman</label>
+                <input readonly type="text" class="form-control" name="id_peminjaman" value="<?= $_GET['id_peminjaman'] ?>">
             </div>
             <div class="mb-3">
                 <label class="form-label">Tanggal Pengembalian</label>
-                <input type="date" class="form-control" name="tanggal_pengembalian" value="<?= $data['tanggal_pengembalian'] ?>">
+                <input readonly type="date" class="form-control" name="tanggal_pengembalian" value="<?= $data['tanggal_pengembalian'] ?>">
             </div>
             <div class="mb-3">
                 <label class="form-label">Tanggal Kembali</label>
                 <input type="date" class="form-control" name="tanggal_kembali">
-            </div>
-            <div class="mb-3">
-                <label class="form-label">Denda</label>
-                <input type="number" class="form-control" name="denda" value="">
             </div>
             <?php } ?>
             <input type="submit" class="btn btn-primary" name="submit" value="Submit"/>
@@ -128,11 +124,11 @@ if (isset($_POST['submit'])) {
     // var_dump($selisih->days);
     // die;
     if ($selisih->days >=  0) {
-      $denda = $selisih->days * 1;
+      $denda = $selisih->days * 10000;
     }
 
 
-    $query = mysqli_query($config, "INSERT INTO pengembalian(id_peminjaman, tanggal_kembali, denda) VALUES('$id_peminjaman', '$tgl_kembali', '$denda')");
+    $query = mysqli_query($config, "INSERT INTO pengembalian(id_peminjaman2, tanggal_kembali, denda) VALUES('$id_peminjaman', '$tgl_kembali', '$denda')");
 
     if ($query) {
         $maxid = mysqli_query($config,"SELECT MAX(id_pengembalian)as id_peng FROM pengembalian");

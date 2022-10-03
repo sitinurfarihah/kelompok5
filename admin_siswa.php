@@ -19,7 +19,7 @@ include "config.php";
     <link rel="stylesheet" type="text/css" href="WOW-master/css/libs/animate.css"/>
   </head>
   <body>
-      <nav class="navbar navbar-expand-lg bg-secondary bg-opacity-10 py-2">
+  <nav class="navbar navbar-expand-lg bg-secondary bg-opacity-10 py-2">
         <div class="container">
           <a class="navbar-brand" href="#"><i class="fa fa-coffee"></i>Perpustakaan 5 Jaya</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,13 +28,19 @@ include "config.php";
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link text-success" aria-current="page" href="index.php">Home</a>
+                <a class="nav-link" aria-current="page" href="admin_home.php">Buku</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="index.php">Book</a>
+                <a class="nav-link  text-success" href="admin_siswa">Siswa</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link bg-success text-white rounded-pill" href="login_siswa.php">Login</a>
+                <a class="nav-link" href="admin_peminjaman.php">Peminjaman</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="admin_pengembalian.php">Pengembalian</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link bg-success text-white rounded-pill ms-4 ps-4 pe-4" href="#">LOGOUT</a>
               </li>
             </ul>
           </div>
