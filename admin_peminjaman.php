@@ -62,7 +62,7 @@ if(!$_SESSION['nip']){
         <table class="table table-striped table-hover table-bordered">
             <thead class="text-center">
                 <tr>
-                    <th>ID Peminjaman</th>
+                    <th>Nomor</th>
                     <th>Nama Siswa</th>
                     <th>Petugas</th>
                     <th>Buku</th>
