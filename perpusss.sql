@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 30, 2022 at 05:13 PM
+-- Generation Time: Oct 03, 2022 at 04:01 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -58,7 +58,7 @@ INSERT INTO `buku` (`id_buku`, `penulis`, `tahun`, `judul`, `kota`, `penerbit`, 
 CREATE TABLE `detail_peminjaman` (
   `id_detail_peminjaman` int(11) NOT NULL,
   `id_buku` int(11) NOT NULL,
-  `id_peminjaman` int(11) NOT NULL,
+  `id_peminjaman3` int(11) NOT NULL,
   `kuantitas` int(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -66,11 +66,15 @@ CREATE TABLE `detail_peminjaman` (
 -- Dumping data for table `detail_peminjaman`
 --
 
-INSERT INTO `detail_peminjaman` (`id_detail_peminjaman`, `id_buku`, `id_peminjaman`, `kuantitas`) VALUES
+INSERT INTO `detail_peminjaman` (`id_detail_peminjaman`, `id_buku`, `id_peminjaman3`, `kuantitas`) VALUES
 (1, 1, 1, 1),
 (2, 2, 2, 1),
 (3, 3, 3, 1),
-(4, 3, 14, 1);
+(4, 3, 14, 1),
+(6, 3, 15, 2),
+(7, 2, 16, 2),
+(8, 1, 17, 1),
+(9, 1, 18, 1);
 
 -- --------------------------------------------------------
 
@@ -92,7 +96,15 @@ CREATE TABLE `detail_pengembalian` (
 INSERT INTO `detail_pengembalian` (`id_detail_pengembalian`, `id_pengembalian`, `ada`, `hilang`) VALUES
 (1, 1, 1, 0),
 (2, 2, 1, 0),
-(3, 3, 1, 0);
+(3, 3, 1, 0),
+(4, 7, 1, 0),
+(5, 8, 1, 0),
+(6, 9, 1, 1),
+(7, 14, 1, 0),
+(8, 15, 1, 0),
+(9, 16, 1, 0),
+(10, 17, 1, 1),
+(11, 24, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -146,7 +158,11 @@ INSERT INTO `peminjaman` (`id_peminjaman`, `id_siswa`, `id_petugas`, `tanggal_pe
 (11, 2, 1, '2022-09-09', '0000-00-00'),
 (12, 1, 1, '0000-00-00', '0000-00-00'),
 (13, 1, 1, '0000-00-00', '0000-00-00'),
-(14, 2, 1, '2022-09-01', '2022-09-01');
+(14, 2, 1, '2022-09-01', '2022-09-01'),
+(15, 3, 1, '2022-10-03', '2022-11-03'),
+(16, 1, 1, '0000-00-00', '2022-11-03'),
+(17, 3, 1, '2022-10-01', '2022-10-04'),
+(18, 1, 1, '2022-10-26', '2022-10-29');
 
 -- --------------------------------------------------------
 
@@ -156,8 +172,8 @@ INSERT INTO `peminjaman` (`id_peminjaman`, `id_siswa`, `id_petugas`, `tanggal_pe
 
 CREATE TABLE `pengembalian` (
   `id_pengembalian` int(11) NOT NULL,
-  `id_peminjaman` int(11) NOT NULL,
-  `tanggal_pengembalian` date NOT NULL,
+  `id_peminjaman2` int(11) NOT NULL,
+  `tanggal_kembali` date NOT NULL,
   `denda` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -165,10 +181,26 @@ CREATE TABLE `pengembalian` (
 -- Dumping data for table `pengembalian`
 --
 
-INSERT INTO `pengembalian` (`id_pengembalian`, `id_peminjaman`, `tanggal_pengembalian`, `denda`) VALUES
+INSERT INTO `pengembalian` (`id_pengembalian`, `id_peminjaman2`, `tanggal_kembali`, `denda`) VALUES
 (1, 1, '2022-10-12', 0),
 (2, 2, '2022-10-06', 0),
-(3, 3, '2022-10-14', 0);
+(3, 3, '2022-10-14', 0),
+(4, 14, '2022-10-21', 0),
+(5, 14, '2022-10-15', 6000),
+(6, 2, '2022-10-21', 10110000),
+(7, 2, '2022-10-20', 10110000),
+(8, 2, '2022-10-20', 2022),
+(9, 2, '0000-00-00', 1666216800),
+(10, 2, '2022-10-21', 0),
+(11, 2, '2022-10-22', 0),
+(12, 2, '2022-10-28', 8),
+(13, 2, '2022-10-29', 9),
+(14, 14, '2022-10-28', 570000),
+(15, 2, '2022-10-22', 2),
+(16, 14, '2022-10-29', 58),
+(17, 15, '2022-11-05', 2),
+(24, 17, '2022-10-04', 0),
+(25, 16, '2022-10-04', 300000);
 
 -- --------------------------------------------------------
 
@@ -232,7 +264,7 @@ ALTER TABLE `buku`
 ALTER TABLE `detail_peminjaman`
   ADD PRIMARY KEY (`id_detail_peminjaman`),
   ADD KEY `id_buku` (`id_buku`),
-  ADD KEY `id_peminjaman` (`id_peminjaman`);
+  ADD KEY `id_peminjaman` (`id_peminjaman3`);
 
 --
 -- Indexes for table `detail_pengembalian`
@@ -260,7 +292,7 @@ ALTER TABLE `peminjaman`
 --
 ALTER TABLE `pengembalian`
   ADD PRIMARY KEY (`id_pengembalian`),
-  ADD KEY `id_peminjaman` (`id_peminjaman`);
+  ADD KEY `id_peminjaman` (`id_peminjaman2`);
 
 --
 -- Indexes for table `petugas`
@@ -289,13 +321,13 @@ ALTER TABLE `buku`
 -- AUTO_INCREMENT for table `detail_peminjaman`
 --
 ALTER TABLE `detail_peminjaman`
-  MODIFY `id_detail_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_detail_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `detail_pengembalian`
 --
 ALTER TABLE `detail_pengembalian`
-  MODIFY `id_detail_pengembalian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_detail_pengembalian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `kelas`
@@ -307,13 +339,13 @@ ALTER TABLE `kelas`
 -- AUTO_INCREMENT for table `peminjaman`
 --
 ALTER TABLE `peminjaman`
-  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_peminjaman` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
-  MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_pengembalian` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `petugas`
@@ -325,7 +357,7 @@ ALTER TABLE `petugas`
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-  MODIFY `nis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `nis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Constraints for dumped tables
@@ -336,7 +368,7 @@ ALTER TABLE `siswa`
 --
 ALTER TABLE `detail_peminjaman`
   ADD CONSTRAINT `detail_peminjaman_ibfk_1` FOREIGN KEY (`id_buku`) REFERENCES `buku` (`id_buku`),
-  ADD CONSTRAINT `detail_peminjaman_ibfk_2` FOREIGN KEY (`id_peminjaman`) REFERENCES `peminjaman` (`id_peminjaman`);
+  ADD CONSTRAINT `detail_peminjaman_ibfk_2` FOREIGN KEY (`id_peminjaman3`) REFERENCES `peminjaman` (`id_peminjaman`);
 
 --
 -- Constraints for table `detail_pengembalian`
@@ -355,7 +387,7 @@ ALTER TABLE `peminjaman`
 -- Constraints for table `pengembalian`
 --
 ALTER TABLE `pengembalian`
-  ADD CONSTRAINT `pengembalian_ibfk_1` FOREIGN KEY (`id_peminjaman`) REFERENCES `peminjaman` (`id_peminjaman`);
+  ADD CONSTRAINT `pengembalian_ibfk_1` FOREIGN KEY (`id_peminjaman2`) REFERENCES `peminjaman` (`id_peminjaman`);
 
 --
 -- Constraints for table `siswa`
