@@ -30,19 +30,19 @@ include "config.php";
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
             <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
               <li class="nav-item">
-                <a class="nav-link text-success" aria-current="page" href="#">Buku</a>
+                <a class="nav-link text-success" aria-current="page" href="admin_home.php">Buku</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Siswa</a>
+                <a class="nav-link" href="admin_siswa.php">Siswa</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Peminjaman</a>
+                <a class="nav-link" href="admin_peminjaman.php">Peminjaman</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Pengembalian</a>
+                <a class="nav-link" href="admin_pengembalian.php">Pengembalian</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link bg-success text-white rounded-pill ms-4 ps-4 pe-4" href="#">LOGOUT</a>
+                <a class="nav-link bg-success text-white rounded-pill ms-4 ps-4 pe-4" href="logout.php">LOGOUT</a>
               </li>
             </ul>
           </div>

@@ -33,13 +33,13 @@ if(!$_SESSION['nip']){
                 <a class="nav-link" aria-current="page" href="admin_home.php">Buku</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Siswa</a>
+                <a class="nav-link" href="admin_siswa">Siswa</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link text-success" href="admin_peminjaman.php">Peminjaman</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Pengembalian</a>
+                <a class="nav-link" href="admin_pengembalian.php">Pengembalian</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link bg-success text-white rounded-pill ms-4 ps-4 pe-4" href="#">LOGOUT</a>
