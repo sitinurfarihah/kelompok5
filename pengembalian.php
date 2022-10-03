@@ -119,15 +119,20 @@ if(!$_SESSION['nip']){
 <?php
 if (isset($_POST['submit'])) {
     $id_peminjaman = $_POST['id_peminjaman'];
-    $tanggal_kembali = $_POST['tanggal_kembali'];
+    $tgl_kembali = $_POST['tanggal_kembali'] ;
+    $tgl_pengembalian = $_POST['tanggal_pengembalian'];
+    $tanggal_kembali = date_create( $tgl_kembali) ;
+    $tanggal_pengembalian = date_create($tgl_pengembalian);
     // $denda = $_POST['denda'];
-    $selisih = date_diff($tanggal_kembali, $data['tanggal_pengembalian']);
-    if ($selisih > 0) {
-      $denda = $selisih * 1;
+    $selisih = date_diff($tanggal_kembali, $tanggal_pengembalian);
+    // var_dump($selisih->days);
+    // die;
+    if ($selisih->days >=  0) {
+      $denda = $selisih->days * 1;
     }
 
 
-    $query = mysqli_query($config, "INSERT INTO pengembalian(id_peminjaman, tanggal_kembali, denda) VALUES('$id_peminjaman', '$tanggal_kembali', '$denda')");
+    $query = mysqli_query($config, "INSERT INTO pengembalian(id_peminjaman, tanggal_kembali, denda) VALUES('$id_peminjaman', '$tgl_kembali', '$denda')");
 
     if ($query) {
         $maxid = mysqli_query($config,"SELECT MAX(id_pengembalian)as id_peng FROM pengembalian");
