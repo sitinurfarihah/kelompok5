@@ -33,7 +33,7 @@ if(!$_SESSION['nip']){
                 <a class="nav-link text-success" aria-current="page" href="admin_home.php">Buku</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="#">Siswa</a>
+                <a class="nav-link" href="admin_siswa.php">Siswa</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="admin_peminjaman.php">Peminjaman</a>
