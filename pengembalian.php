@@ -62,11 +62,15 @@ if(!$_SESSION['nip']){
 
                 $ambil = mysqli_query($config,"SELECT * FROM peminjaman WHERE id_peminjaman = $id_peminjaman");
                 while ($data = mysqli_fetch_array($ambil)){
-                   $data['tanggal_pengembalian'];
+                  //  $data['tanggal_pengembalian'];
             ?>
             <div class="mb-3">
                 <label class="form-label">ID Pengembalian</label>
                 <input type="text" class="form-control" name="id_peminjaman" value="<?= $_GET['id_peminjaman'] ?>">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Tanggal Pengembalian</label>
+                <input type="date" class="form-control" name="tanggal_pengembalian" value="<?= $data['tanggal_pengembalian'] ?>">
             </div>
             <div class="mb-3">
                 <label class="form-label">Tanggal Kembali</label>
@@ -117,7 +121,7 @@ if (isset($_POST['submit'])) {
     $id_peminjaman = $_POST['id_peminjaman'];
     $tanggal_kembali = $_POST['tanggal_kembali'];
     // $denda = $_POST['denda'];
-    $selisih = date_diff($data['tanggal_pengembalian'] - $tanggal_kembali);
+    $selisih = date_diff($tanggal_kembali, $data['tanggal_pengembalian']);
     if ($selisih > 0) {
       $denda = $selisih * 1;
     }
